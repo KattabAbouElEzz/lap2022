@@ -1,0 +1,88 @@
+--------------------------------------------------------ausführen nuget console---------------------------------------------------------------------------
+Scaffold-DbContext "Server=KATTABSTHINKPAD;Database=Business;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+--------------------------------------------------------ausführen nuget console---------------------------------------------------------------------------
+
+
+--------------------------------------------------------nuget packages----------------------------------------------------------------------------
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Tools
+Pomelo.EntityFrameworkCore.MySql
+--------------------------------------------------------nuget packages----------------------------------------------------------------------------
+
+
+
+----------------------------------------------------- appsettings.json file --------------------------------------------------------------
+,
+  "ConnectionStrings": {
+    "Business": "Data Source=KATTABSTHINKPAD;Initial Catalog=Business;Integrated Security=True"
+  }
+----------------------------------------------------- appsettings.json file --------------------------------------------------------------
+  
+ 
+------------------------------------------------------program.cs-------------------------------------------------------------------------
+builder.Services.AddDbContext<dbContext>(
+    options => options.UseMySql(builder.Configuration.GetConnectionString("dbnameInAppsettings"),
+    new MySqlServerVersion(new Version(8, 0, 27)))
+);
+------------------------------------------------------program.cs-------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------table style-----------------------------------------------------------------------
+<div class="table-responsive text-nowrap">
+
+    <div class="card">
+
+        <div class="card-body">
+            <form asp-action="UnlockStudents" , asp-controller="Home" method="post">
+
+
+
+                <div style="text-align: right">
+                    <button type="submit" class="btn btn-primary"> Speichern </button>
+                </div>
+                <div class="row">
+
+
+                    <table class="table card-table">
+                        <thead>
+                            <tr>
+                                <th>Vorname</th>
+                                <th>Nachname</th>
+                                <th>Klasse</th>
+                                <th>Frei</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+
+
+                            @foreach (SPAdministration.ViewModels.StudentVM student in Model)
+                            {
+                                <tr>
+
+
+
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                    @if (Model != null)
+                    {
+                    }
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+-------------------------------------------------------table style-----------------------------------------------------------------------
+
+-- bei jedem Controller für Konstruktor
+private readonly context _context;
+
